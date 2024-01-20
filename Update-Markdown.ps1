@@ -27,6 +27,8 @@ Function Update-Markdown {
     foreach ($line in $Markdown) {
 
       if ($line -match $pattern) {
+        Write-Output $Line
+
         $Result = Invoke-Expression $Matches[1]
         If ($Result) {
           $IsInsertingSnippet = $True
@@ -34,6 +36,7 @@ Function Update-Markdown {
           If ($Until -eq $null) {
             $Until = "``````" # three backticks
           }  
+
         }
       }
 
