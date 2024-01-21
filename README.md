@@ -69,10 +69,12 @@ and any snippets that is present in the Markdown file will be left unchanged.
 
 # Similar projects
 
-[1] https://github.com/NativeScript/markdown-snippet-injector
+[1] https://github.com/SimonCropp/MarkdownSnippets
 
-[2] https://github.com/polywrap/doc-snippets
+[2] https://github.com/NativeScript/markdown-snippet-injector
 
-[3] https://github.com/endocode/snippetextractor
+[3] https://github.com/polywrap/doc-snippets
+
+[4] https://github.com/endocode/snippetextractor
 
 [//]: # (This may be the most platform independent comment)
