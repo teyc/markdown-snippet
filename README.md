@@ -28,6 +28,17 @@ Import-Module MarkdownSnippet
 Update-MarkdownSnippet .\Readme.md | Set-Content .\Readme.md -Encoding UTF-8
 ```
 
+# Function reference
+
+```pwsh
+Get-MarkdownSnippet -Path .\Samples\Startup.cs -Name configuration -Until '###'
+###
+
+# The `Path` to .\Startup.cs is relative to the markdown file
+# The `Name` of the snippet is not case-sensitive
+# The `Until` segment is forgiving of leading and trailing spaces
+```
+
 # Idempotency
 
 The script can be executed multiple times and it will not change
@@ -36,7 +47,7 @@ the file if the snippets are unchanged.
 # Insertion of snippet
 
 The snippet is inserted from the line below the Get-MarkdownSnippet
-directive, up to the triple backticks ``````.
+directive, up to the triple backticks ```.
 
 This can be changed by passing the `-Until` parameter
 
@@ -45,7 +56,7 @@ This can be changed by passing the `-Until` parameter
 The code is automatically indented to the current block.
 If you indent with 4 spaces
 
-    ```csharp
+    ```
     // Get-MarkdownSnippet ./Samples/Startup.cs configuration
     ```
 

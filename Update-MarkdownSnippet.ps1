@@ -46,9 +46,9 @@ Function Update-MarkdownSnippet {
         Write-Output $Line
 
         $Indent = $Matches[1].Length
-        Write-Verbose "`[$($Matches[1])`]"
+        Write-Verbose "`[$($Matches[1])`][$($Matches[2])]"
         $Result = Invoke-Expression $Matches[2]
-        If ($Result) {
+                If ($Result) {
           $IsInsertingSnippet = $True
           $Result | Set-Indentation -Indent $Indent | Write-Output
           If ($Until -eq $null) {

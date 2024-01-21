@@ -19,9 +19,10 @@ Function Get-MarkdownSnippet {
 
     If (-Not (Test-Path $FullName)) {
       Write-Error `Not found: $FullName`
+      Exit 1
     }
   
-    $lines = Get-Content $Path
+    $lines = Get-Content $FullName
     $patternStart = "snip:$Name"
     $patternEnd = "end:$Name"
     $snipStart = $false
@@ -67,5 +68,5 @@ Function Get-MarkdownSnippet {
       Write-Warning "not found '$patternEnd' in '$FullName'"
     }
 
-    Set-Variable "Until" $Until -scope Global
+    Set-Variable "Until" $Until -scope 1
 }
