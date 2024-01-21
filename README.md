@@ -77,4 +77,6 @@ and any snippets that is present in the Markdown file will be left unchanged.
 
 [4] https://github.com/endocode/snippetextractor
 
+[5] https://github.com/csharp-today/MarkdownCodeEmbed
+
 [//]: # (This may be the most platform independent comment)
