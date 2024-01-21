@@ -24,6 +24,7 @@ configuration = new ConfigurationBuilder()
 # Usage
 
 ```
+Import-Module MarkdownSnippet
 Update-Markdown .\Readme.md | Set-Content .\Readme.md -Encoding UTF-8
 ```
 
