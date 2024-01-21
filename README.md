@@ -27,6 +27,17 @@ configuration = new ConfigurationBuilder()
 Update-Markdown .\Readme.md | Set-Content .\Readme.md -Encoding UTF-8
 ```
 
+# Indentation
+
+The code is automatically indented to the current block.
+If you indent with 4 spaces
+
+    ```csharp
+    // Get-MarkdownSnippet ./Samples/Startup.cs configuration
+    ```
+
+Then the code blocks get indented to 4 spaces as well.
+
 [//]: # (This may be the most platform independent comment)
 
 # Similar projects

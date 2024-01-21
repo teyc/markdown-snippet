@@ -1,3 +1,19 @@
+Function Set-Indentation {
+  [CmdletBinding()]
+  param(
+    [parameter(Mandatory=$True,Position=0)][int] $Indent,
+    [parameter(ValueFromPipeline=$True)] $Line
+  )
+
+  begin {
+    Write-Verbose "Indented to $Indent"
+  }
+
+  process {
+    " " * $Indent + $line
+  }
+}
+
 Function Update-Markdown {
   <#
   .SYNOPSIS
@@ -17,7 +33,7 @@ Function Update-Markdown {
   }
 
   $Markdown = Get-Content $Path
-  $pattern = "(Get-MarkdownSnippet .+$)"
+  $pattern = "^(\s*).*(Get-MarkdownSnippet .+$)"
   
   try {
     Push-Location (Split-Path (Resolve-Path $Path))
@@ -29,10 +45,12 @@ Function Update-Markdown {
       if ($line -match $pattern) {
         Write-Output $Line
 
-        $Result = Invoke-Expression $Matches[1]
+        $Indent = $Matches[1].Length
+        Write-Verbose "`[$($Matches[1])`]"
+        $Result = Invoke-Expression $Matches[2]
         If ($Result) {
           $IsInsertingSnippet = $True
-          Write-Output $Result
+          $Result | Set-Indentation -Indent $Indent | Write-Output
           If ($Until -eq $null) {
             $Until = "``````" # three backticks
           }  
@@ -40,7 +58,7 @@ Function Update-Markdown {
         }
       }
 
-      If ($Until -ne $null -And $line -eq $Until) {
+      If ($Until -ne $null -And $line -Match "^\s*$Until\s*$") {
         $Until = $null
         $IsInsertingSnippet = $False
       }
@@ -55,5 +73,9 @@ Function Update-Markdown {
   
   } finally {
     Pop-Location
+  }
+
+  If ($IsInsertingSnippet) {
+    Write-Error "Did not find marker $Until"
   }
 }
