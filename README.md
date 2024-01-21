@@ -1,4 +1,4 @@
-﻿# Update-Markdown
+﻿# Update-MarkdownSnippet
 
 This script reads a markdown file, and when it finds a marker
 like
@@ -25,7 +25,7 @@ configuration = new ConfigurationBuilder()
 
 ```
 Import-Module MarkdownSnippet
-Update-Markdown .\Readme.md | Set-Content .\Readme.md -Encoding UTF-8
+Update-MarkdownSnippet .\Readme.md | Set-Content .\Readme.md -Encoding UTF-8
 ```
 
 # Idempotency

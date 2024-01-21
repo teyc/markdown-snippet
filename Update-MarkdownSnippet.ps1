@@ -14,7 +14,7 @@ Function Set-Indentation {
   }
 }
 
-Function Update-Markdown {
+Function Update-MarkdownSnippet {
   <#
   .SYNOPSIS
     Updates an existing markdown file with injected code-snippet
