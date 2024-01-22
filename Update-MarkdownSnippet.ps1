@@ -34,7 +34,7 @@ Function Update-MarkdownSnippet {
 
   $Markdown = Get-Content $Path
   $pattern = "^(\s*).*(Get-MarkdownSnippet .+$)"
-  
+
   try {
     Push-Location (Split-Path (Resolve-Path $Path))
 
@@ -51,26 +51,26 @@ Function Update-MarkdownSnippet {
                 If ($Result) {
           $IsInsertingSnippet = $True
           $Result | Set-Indentation -Indent $Indent | Write-Output
-          If ($Until -eq $null) {
+          If ($null -eq $Until) {
             $Until = "``````" # three backticks
-          }  
+          }
 
         }
       }
 
-      If ($Until -ne $null -And $line -Match "^\s*$Until\s*$") {
+      If ($null -ne $Unil -And $line -Match "^\s*$Until\s*$") {
         $Until = $null
         $IsInsertingSnippet = $False
       }
 
-      if ($IsInsertingSnippet -And $Until -ne $null) {
+      if ($IsInsertingSnippet -And $null -ne $Until) {
         continue
       }
 
       Write-Output $line
 
     }
-  
+
   } finally {
     Pop-Location
   }
